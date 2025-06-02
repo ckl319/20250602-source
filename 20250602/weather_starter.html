@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Weather Viewer</title>
+  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.22.9/babel.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #e8ecef;
+    }
+    .app {
+      text-align: center;
+      padding: 20px;
+      border: 1px solid #666;
+      background-color: #fff;
+      width: 300px;
+      border-radius: 5px;
+    }
+    select {
+      padding: 8px;
+      width: 100%;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    .weather-box {
+      border: 1px solid #333;
+      padding: 15px;
+      border-radius: 5px;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    // Mock weather data
+    const weatherData = {
+      Paris: { temp: 20, condition: 'Sunny' },
+      Sydney: { temp: 25, condition: 'Cloudy' },
+      Miami: { temp: 30, condition: 'Rainy' },
+      Cairo: { temp: 35, condition: 'Hot' },
+    };
+
+
+    // Your code starts here
+    function WeatherApp() {
+      // Add useState, useEffect, and components
+    }
+
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<WeatherApp />);
+  </script>
+</body>
+</html>

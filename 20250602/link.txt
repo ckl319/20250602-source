@@ -1,0 +1,8 @@
+Promise
+https://docs.google.com/document/d/1hFp1-BqyxRc6Z0fKfwbtPW3_NDsbIjYbWhjat0pvM5E/edit?usp=sharing
+
+Promise and Async Exercise
+https://docs.google.com/document/d/1RSpuZIMlYZMgN5_QaQq5Gy9mbaX89_uI2Wvx_ISFT-4/edit?usp=sharing
+
+[JavaScript] 一次搞懂同步與非同步的一切：待會叫你 — 回呼函式(Callback Function)
+https://medium.com/itsems-frontend/javascript-callback-function-993abc2c0b42

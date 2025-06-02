@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Weather Viewer</title>
+  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.22.9/babel.min.js"></script>
+  <style>
+    /* Center the app on the page */
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #e8ecef;
+    }
+    /* Style the main app container */
+    .app {
+      text-align: center;
+      padding: 20px;
+      border: 1px solid #666;
+      background-color: #fff;
+      width: 300px;
+      border-radius: 5px;
+    }
+    /* Style the dropdown */
+    select {
+      padding: 8px;
+      width: 100%;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    /* Style the weather info box */
+    .weather-box {
+      border: 1px solid #333;
+      padding: 15px;
+      border-radius: 5px;
+    }
+    /* Style the heading */
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    // Mock weather data (like getting data from an API)
+    const weatherData = {
+      Paris: { temp: 20, condition: 'Sunny' },
+      Sydney: { temp: 25, condition: 'Cloudy' },
+      Miami: { temp: 30, condition: 'Rainy' },
+      Cairo: { temp: 35, condition: 'Hot' },
+    };
+
+    // CityPicker component: Shows a dropdown to select a city
+    function CityPicker({ city, setCity }) {
+      // The select tag uses city for its value and calls setCity on change
+      return (
+        <div>
+          <h2>Select a City</h2>
+          <select value={city} onChange={(e) => setCity(e.target.value)}>
+            <option value="">Select a city</option>
+            <option value="Paris">Paris</option>
+            <option value="Sydney">Sydney</option>
+            <option value="Miami">Miami</option>
+            <option value="Cairo">Cairo</option>
+          </select>
+        </div>
+      );
+    }
+
+    // WeatherInfo component: Shows weather details or a message
+    function WeatherInfo({ weather }) {
+      // If no weather data, show a message
+      if (!weather) {
+        return <p>Please select a city</p>;
+      }
+      // Show temperature and condition in a box
+      return (
+        <div className="weather-box">
+          <p>Temperature: {weather.temp}°C</p>
+          <p>Condition: {weather.condition}</p>
+        </div>
+      );
+    }
+
+    // Main WeatherApp component: Manages state and renders components
+    function WeatherApp() {
+      // useState: city stores the selected city (starts as empty)
+      const [city, setCity] = React.useState('');
+      // useState: weather stores the weather data (starts as null)
+      const [weather, setWeather] = React.useState(null);
+
+      // useEffect: Updates weather when city changes
+      React.useEffect(() => {
+        // Only run if a city is selected
+        if (city) {
+          // Get weather data from mock data
+          setWeather(weatherData[city]);
+        } else {
+          // Clear weather if no city is selected
+          setWeather(null);
+        }
+      }, [city]); // Runs when city changes
+
+      // Render the app with CityPicker and WeatherInfo
+      return (
+        <div className="app">
+          <h1>Weather Viewer</h1>
+          {/* CityPicker handles city selection */}
+          <CityPicker city={city} setCity={setCity} />
+          {/* WeatherInfo shows the weather */}
+          <WeatherInfo weather={weather} />
+        </div>
+      );
+    }
+
+    // Start the app
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<WeatherApp />);
+  </script>
+</body>
+</html>

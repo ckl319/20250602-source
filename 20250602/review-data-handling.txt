@@ -1,0 +1,77 @@
+Review Data Handling:
+
+a record -> object
+records -> array
+
+For a record, how to get data for object:
+ - obj["key_name"] or obj.key_name
+ - e.g. product["name"] or product.name
+
+ For object, key === property
+
+For records, how to get element data for array:
+ - arr[index] or using looping, like for loop
+ - e.g. let firstProduct = product[0];
+
+- How to handling data:
+ let list = [];
+ for(let i = 0; i<arr.length; i++) {
+    let element = arr[i];
+    let {name, id, price, ...restData } = element; // if element is object
+
+    if(true) {
+        list.push({
+            name,
+            id,
+            price,
+        });
+    }
+ }
+
+
+ // For array, we can use array methods to handle data
+
+let products = [
+    { name: "Product 1", id: 1, price: 100 },
+    { name: "Product 2", id: 2, price: 200 },
+    { name: "Product 3", id: 3, price: 300 }
+];
+
+ // forEach: When we want to handle data for each iteration
+products.forEach(product => {
+    let { name, id, price } = product; // destructuring
+    console.log(name, id, price);
+});
+
+// map: When we want to transform data and create a new array
+let posts = [
+    { title: "Post 1", content: "Content 1" }, 
+    { title: "Post 2", content: "Content 2" }
+];
+let titles = posts.map(post => {
+    return `[ABC Company] - ${post.title}`; // returns a new array with just the names
+}); // [ABC Company] - Post 1, [ABC Company] - Post 2
+
+// filter: When we want to filter data based on a condition
+let filteredProducts = products.filter(product => {
+    return product.price > 150; // returns a new array with products that have price greater than 150
+}); // [{ name: "Product 2", id: 2, price: 200 }, { name: "Product 3", id: 3, price: 300 }]
+
+// find: When we want to find a record from an array based on a condition
+let foundProduct = products.find(product => {
+    return product.id === 2; // returns the first product with id 2
+}); // { name: "Product 2", id: 2, price: 200 }
+
+
+For object symtax:
+{ key: value, key2: value2, ... }
+
+For JSON syntax:
+{
+    "key": "value",
+    "key2": "value2",
+    ...
+}
+
+For array symtax:
+[ value1, value2, value3, ... ]
