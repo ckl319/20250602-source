@@ -1,0 +1,21 @@
+problem 1:
+npm start, get 'npm error Missing script: "start"'
+solve 1:
+make sure package.json's script contain:
+"start": "react-scripts start",
+
+problem 2:
+react-scripts 不是內部或外部命令
+solve 2:
+重新安裝
+rm -rf node_modules package-lock.json
+(del node_modules package-lock.json)
+npm install (=npm i)
+npm start
+
+problem 2a (after solve 2):
+react-scripts 不是內部或外部命令
+solve 2a:
+npm install react-scripts --save
+會在package.json的Dependencies加入： "react-scripts": "^5.0.1",
+
