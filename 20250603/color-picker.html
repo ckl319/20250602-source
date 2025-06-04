@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Color Picker</title>
+  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.22.9/babel.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #e8ecef;
+    }
+    .app {
+      text-align: center;
+      padding: 20px;
+      border: 1px solid #666;
+      background-color: #fff;
+      width: 300px;
+      border-radius: 5px;
+    }
+    select {
+      padding: 8px;
+      width: 100%;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+    .color-box {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto;
+      border: 1px solid #333;
+      border-radius: 5px;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    // Mock color data
+    const colorData = {
+      Red: { hex: '#ff0000' },
+      Blue: { hex: '#0000ff' },
+      Green: { hex: '#00ff00' },
+    };
+
+    // ColorPicker component: Dropdown for selecting a color
+    function ColorPicker({ color, setColor }) {
+      // Step 2: Dropdown with 3 colors
+      return (
+        <div>
+          <select value={color} onChange={(e) => setColor(e.target.value)}>
+            <option value="">Select a color</option>
+            {
+              /* Object.keys(colorData) = ["Red", "Blue", "Green"]; */
+              Object.keys(colorData).map((colorName) => (
+              <option key={colorName} value={colorName}>
+                {colorName}
+              </option>
+            ))}
+            {
+              /* 
+              <option value="Red">Red</option>
+              <option value="Blue">Blue</option>
+              <option value="Green">Green</option>
+              */
+            }
+          </select>
+        </div>
+      );
+    }
+
+    // ColorDisplay component: Shows a colored square or message
+    function ColorDisplay({ hex }) {
+      // Step 5: Show colored square or "Pick a color"
+      if (hex === null) {
+        return <div className="color-box">Pick a color</div>;
+      }
+      return <div className="color-box" style={{ backgroundColor: hex }}></div>;
+    }
+
+    // ColorApp component: Main app logic
+    function ColorApp() {
+      // Step 1: State for color
+      const [color, setColor] = React.useState('');
+      // Step 3: State for hex code
+      const [hex, setHex] = React.useState(null);
+
+      // Step 4: Update hex code when color changes
+      React.useEffect(() => {
+        if (color) {
+          setHex(colorData[color].hex);
+        } else {
+          setHex(null);
+        }
+      }, [color]);
+
+      // Step 6: Render components
+      return (
+        <div className="app">
+          <h1>Color Picker</h1>
+          <ColorPicker color={color} setColor={setColor} />
+          <ColorDisplay hex={hex} />
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<ColorApp />);
+  </script>
+</body>
+</html>

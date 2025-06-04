@@ -1,0 +1,26 @@
+https://www.w3schools.com/react/showreact.asp?filename=demo2_react_forms_multiple
+
+Assume inputs = { username: "John", age: "25" }
+Assume User enter "John Chan"
+
+setInputs(values => ({...values, [name]: value}))
+values = { username: "John", age: "25" }
+...values = username: "John", age: "25"
+[name] = [event.target.name] = "username"
+value = [event.target.value] = "John Chan"
+setInputs(values => ({username: "John", age: "25", "username": "John Chan"}))
+setInputs(values => ({age: "25", "username": "John Chan"}))
+setInputs({age: "25", "username": "John Chan"})
+
+---
+The user types "30" in the age input field:
+
+event.target.name is "age".
+event.target.value is "30".
+handleChange is called, and setInputs(values => ({...values, [name]: value})) runs:
+values is the current state: { username: "John", age: "25" }.
+...values copies { username: "John", age: "25" }.
+[name]: value is [age]: "30", which becomes age: "30".
+The new object is { username: "John", age: "30" } (note that age is updated, username is preserved).
+setInputs updates the state to { username: "John", age: "30" }.
+Now, when the form re-renders, the age input shows "30", and the username input still shows "John".

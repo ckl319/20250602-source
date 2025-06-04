@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.development.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+    // Your React code starts here
+    function MyForm() {
+    const [name, setName] = useState("");
+
+    return (
+        <form>
+          <label>Enter your name:
+            <input
+              type="text" 
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </label>
+          <div>You Name: {name}</div>
+        </form>
+      )
+    }
+
+    ReactDOM.render(<MyForm />, document.getElementById('root'));
+  </script>
+</body>
+</html>
